@@ -4,6 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
 import {TransactionDialog} from "../transaction-dialog/TransactionDialog";
+import "./Transactions.css";
 
 export interface Transaction {
     transactionId: string;
@@ -20,8 +21,8 @@ interface TransactionsProps {
 export const Transactions = (props: TransactionsProps) => {
     const [editedTransaction, setEditedTransaction] = useState<Transaction>();
     return (
-        <div>
-            <List sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
+        <div className="Container">
+            <List className="List">
                 {props.items.map((item) => {
                     const labelId = `checkbox-list-label-${item.transactionId}`;
 
@@ -29,19 +30,18 @@ export const Transactions = (props: TransactionsProps) => {
                         <ListItem
                             key={item.transactionId}
                             secondaryAction={
-                                <div style={{display: 'flex'}}>
-                                    {item.amount}
+                                <div style={{display: 'flex', flexDirection: 'row'}}>
                                     <IconButton
                                         edge="end"
                                         aria-label="edit transaction"
-                                        onChange={() => setEditedTransaction(item)}
+                                        onClick={() => setEditedTransaction(item)}
                                     >
                                         <EditIcon/>
                                     </IconButton>
                                     <IconButton
                                         edge="end"
                                         aria-label="delete transaction"
-                                        onChange={() => props.onChange(props.items.filter(i => i.transactionId !== item.transactionId))}
+                                        onClick={() => props.onChange(props.items.filter(i => i.transactionId !== item.transactionId))}
                                     >
                                         <DeleteIcon/>
                                     </IconButton>
@@ -53,6 +53,10 @@ export const Transactions = (props: TransactionsProps) => {
                                 id={labelId}
                                 primary={item.description}
                             />
+                            <ListItemText
+                                id={labelId}
+                                primary={item.amount}
+                            />
                         </ListItem>
                     );
                 })}
@@ -60,6 +64,7 @@ export const Transactions = (props: TransactionsProps) => {
             <Fab
                 color="primary"
                 aria-label="add"
+                className="Fab"
                 onClick={() => setEditedTransaction({amount: 0, description: '', transactionId: crypto.randomUUID()})}
             >
                 <AddIcon/>

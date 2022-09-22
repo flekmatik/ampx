@@ -23,6 +23,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                     margin="dense"
                     variant="standard"
                     label="Description"
+                    value={transaction.description}
                     onChange={event => setTransaction({
                         ...transaction,
                         description: event.target.value,
@@ -53,6 +54,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                         startAdornment: <InputAdornment position="start">€</InputAdornment>,
                     }}
                     type="number"
+                    value={transaction.amount}
                     variant="standard"
                     inputProps={{inputMode: 'numeric', pattern: '([0-9]*[.])?[0-9]*'}}
                     onChange={event => setTransaction({
