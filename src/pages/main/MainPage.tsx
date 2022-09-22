@@ -8,17 +8,30 @@ const ContentTypes = {
 
 type ContentTypeList = keyof typeof ContentTypes;
 
-export const MainPage = () => {
+export interface Model {
+    transactions: Transaction[];
+}
+
+interface MainPageProps {
+    model: Model;
+    onChange: (value: Model) => void;
+}
+
+export const MainPage = (props: MainPageProps) => {
     const [contentType, setContentType] = useState<ContentTypeList>('transactions');
     const Content = ContentTypes[contentType];
-
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     return (
         <div className="Container">
             <AppBar position="static" color="default" />
             {/*<Sider />*/}
-            <Content items={transactions} onChange={value => setTransactions(value)} />
+            <Content
+                items={props.model.transactions}
+                onChange={value => props.onChange({
+                    ...props.model,
+                    transactions: value,
+                })}
+            />
         </div>
     );
 }
