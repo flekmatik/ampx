@@ -1,6 +1,6 @@
-import {Fab, IconButton, Table, TableBody, TableCell, TableRow} from "@mui/material";
+import {Box, Fab, IconButton, Table, TableBody, TableCell, TableRow} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
@@ -24,8 +24,8 @@ interface TransactionsProps {
 export const Transactions = (props: TransactionsProps) => {
     const [editedTransaction, setEditedTransaction] = useState<Transaction>();
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 width: '100%',
                 height: '100%',
                 display: 'flex',
@@ -33,7 +33,7 @@ export const Transactions = (props: TransactionsProps) => {
                 alignItems: 'start',
             }}
         >
-            <Table style={{width: 700}}><TableBody>
+            <Table style={{width: 700, margin: 16}}><TableBody>
                 {props.items.map((item) => (
                     <TableRow key={item.transactionId}>
                         <TableCell width={100}>
@@ -94,6 +94,6 @@ export const Transactions = (props: TransactionsProps) => {
                     }}
                 />
             )}
-        </div>
+        </Box>
     );
 }

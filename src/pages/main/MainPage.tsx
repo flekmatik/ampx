@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Transaction, Transactions} from "../../components/transactions/Transactions";
-import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, CssBaseline, IconButton, Toolbar, Typography} from "@mui/material";
 import {Page, Sider} from "../../components/Sider/Sider";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
@@ -33,19 +33,19 @@ export const MainPage = (props: MainPageProps) => {
     }
 
     return (
-        <div className="Container">
-            <AppBar position="static" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Box>
+            <AppBar position="fixed" sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}>
                 <Toolbar>
                     <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
                         aria-label="menu"
-                        sx={{ mr: 2 }}
+                        sx={{mr: 2}}
                     >
-                        <AccountBalanceWalletIcon />
+                        <AccountBalanceWalletIcon/>
                     </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 1, textAlign: 'left'}}>
                         Amp X Expenses tracker
                     </Typography>
                     <Button color="inherit" onClick={() => props.onLogout()}>Logout</Button>
@@ -55,7 +55,10 @@ export const MainPage = (props: MainPageProps) => {
                 page={page}
                 onChange={page => setPage(page)}
             />
-            {getContent()}
-        </div>
+            <Box>
+                <Toolbar />
+                {getContent()}
+            </Box>
+        </Box>
     );
 }

@@ -19,6 +19,7 @@ export const LoginPage = (props: LoginPageProps) => {
             />
             <TextField
                 label="Password"
+                type="password"
                 variant="standard"
                 value={password}
                 onChange={event => setPassword(event.target.value)}

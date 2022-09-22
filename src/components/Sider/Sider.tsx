@@ -1,4 +1,4 @@
-import {Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
+import {Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar} from "@mui/material";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -12,7 +12,8 @@ interface SiderProps {
 
 export const Sider = (props: SiderProps) => {
     return (
-        <Drawer open variant="permanent">
+        <Drawer variant="permanent">
+            <Toolbar />
             <Box
                 sx={{width: 250}}
                 role="presentation"

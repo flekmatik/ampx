@@ -10,41 +10,40 @@ const emptyModel: Model = {
 };
 
 const getModelKey = (username: string) => `${username}-model`;
+const getModel = (username: string) => {
+    const modelKey = getModelKey(username);
+    const jsonModel = localStorage.getItem(modelKey);
+    return jsonModel && JSON.parse(jsonModel);
+}
 
 function App() {
-    const [username, setUsername] = useState(localStorage.getItem(authKey) || '');
-    const [model, setModel] = useState<Model>();
+    const [username, setUsername] = useState(localStorage.getItem(authKey) ?? '');
+    const [model, setModel] = useState<Model | undefined>(getModel(username));
 
-    return (
-        <div className="App">
-            {model
-                ? (
-                    <MainPage
-                        model={model}
-                        onChange={m => {
-                            setModel(m);
-                            localStorage.setItem(getModelKey(username), JSON.stringify(m));
-                        }}
-                        onLogout={() => {
-                            localStorage.removeItem(authKey);
-                            setModel(undefined);
-                        }}
-                    />
-                )
-                : (
-                    <LoginPage
-                        onLogin={u => {
-                            localStorage.setItem(authKey, u);
-                            const modelData = localStorage.getItem(getModelKey(u));
-                            setModel(modelData
-                                ? JSON.parse(modelData)
-                                : emptyModel);
-                            setUsername(username);
-                        }}
-                    />
-                )}
-        </div>
-    );
+    return model
+        ? (
+            <MainPage
+                model={model || emptyModel}
+                onChange={m => {
+                    setModel(m);
+                    localStorage.setItem(getModelKey(username), JSON.stringify(m));
+                }}
+                onLogout={() => {
+                    localStorage.removeItem(authKey);
+                    setModel(undefined);
+                }}
+            />
+        )
+        : (
+            <LoginPage
+                onLogin={u => {
+                    localStorage.setItem(authKey, u);
+                    const model = getModel(u);
+                    setModel(model ?? emptyModel);
+                    setUsername(username);
+                }}
+            />
+        );
 }
 
 export default App;
