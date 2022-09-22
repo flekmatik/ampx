@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Expenses tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple application that allows to control the budget for users
 
 ## Available Scripts
 
