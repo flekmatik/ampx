@@ -14,7 +14,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
         ...props.initial,
         amount: Math.abs(props.initial.amount),
     });
-    const [isExpense, setIsExpense] = useState(props.initial.amount < 0);
+    const amountSign = transaction.amount < 0 ? -1 : 1;
     return (
         <Dialog open onClose={props.onCancel} fullWidth>
             <DialogTitle>Edit transaction</DialogTitle>
@@ -33,17 +33,20 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                     select
                     margin="dense"
                     label="Type"
-                    value={isExpense ? 1 : 0}
-                    onChange={event => setIsExpense(!!event.target.value)}
+                    value={amountSign}
+                    onChange={(event) => setTransaction({
+                        ...transaction,
+                        amount: Math.abs(transaction.amount) * (event.target.value as unknown as number)
+                    })}
                     SelectProps={{
                         native: true,
                     }}
                     variant="standard"
                 >
-                    <option value={0}>
+                    <option value={1}>
                         Income
                     </option>
-                    <option value={1}>
+                    <option value={-1}>
                         Expense
                     </option>
                 </TextField>
@@ -54,12 +57,11 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                         startAdornment: <InputAdornment position="start">€</InputAdornment>,
                     }}
                     type="number"
-                    value={transaction.amount}
+                    value={Math.abs(transaction.amount)}
                     variant="standard"
-                    inputProps={{inputMode: 'numeric', pattern: '([0-9]*[.])?[0-9]*'}}
                     onChange={event => setTransaction({
                         ...transaction,
-                        amount: parseFloat(event.target.value),
+                        amount: parseFloat(event.target.value) * amountSign,
                     })}
                 />
             </DialogContent>
@@ -67,10 +69,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                 <Button onClick={props.onCancel}>Cancel</Button>
                 <Button
                     variant="contained"
-                    onClick={() => props.onConfirm({
-                        ...transaction,
-                        amount: transaction.amount * (isExpense ? -1 : 1)
-                    })}
+                    onClick={() => props.onConfirm(transaction)}
                 >
                     Confirm
                 </Button>
