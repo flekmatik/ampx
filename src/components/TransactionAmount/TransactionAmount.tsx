@@ -7,6 +7,6 @@ interface TransactionAmountProps {
 
 export const TransactionAmount = (props: TransactionAmountProps) => (
     <Typography color={props.transaction.amount < 0 ? 'red' : 'green'}>
-        {props.transaction.amount}
+        €{Math.abs(props.transaction.amount)}
     </Typography>
 )

@@ -1,7 +1,19 @@
 import {Transaction} from "../transactions/Transactions";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, InputAdornment, TextField} from "@mui/material";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    InputAdornment,
+    Stack,
+    TextField
+} from "@mui/material";
 import {useState} from "react";
 import "./TransactionDialog.css";
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 
 interface TransactionDialogProps {
     initial: Transaction;
@@ -18,50 +30,63 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
     return (
         <Dialog open onClose={props.onCancel} fullWidth>
             <DialogTitle>Edit transaction</DialogTitle>
-            <DialogContent className="Content">
-                <TextField
-                    margin="dense"
-                    variant="standard"
-                    label="Description"
-                    value={transaction.description}
-                    onChange={event => setTransaction({
-                        ...transaction,
-                        description: event.target.value,
-                    })}
-                />
-                <TextField
-                    select
-                    margin="dense"
-                    label="Type"
-                    value={isExpense ? 1 : 0}
-                    onChange={event => setIsExpense(!!event.target.value)}
-                    SelectProps={{
-                        native: true,
-                    }}
-                    variant="standard"
-                >
-                    <option value={0}>
-                        Income
-                    </option>
-                    <option value={1}>
-                        Expense
-                    </option>
-                </TextField>
-                <TextField
-                    label="Amount"
-                    margin="dense"
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">€</InputAdornment>,
-                    }}
-                    type="number"
-                    value={transaction.amount}
-                    variant="standard"
-                    inputProps={{inputMode: 'numeric', pattern: '([0-9]*[.])?[0-9]*'}}
-                    onChange={event => setTransaction({
-                        ...transaction,
-                        amount: parseFloat(event.target.value),
-                    })}
-                />
+            <DialogContent sx={{ display: 'flex', flexDirection: 'column'}}>
+                <Stack sx={{marginTop: 1}}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DesktopDatePicker
+                            label="Date"
+                            inputFormat="DD/MM/YYYY"
+                            value={transaction.date}
+                            onChange={(date) => setTransaction({
+                                ...transaction,
+                                date: date!,
+                            })}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                    <TextField
+                        margin="dense"
+                        variant="standard"
+                        label="Description"
+                        value={transaction.description}
+                        onChange={event => setTransaction({
+                            ...transaction,
+                            description: event.target.value,
+                        })}
+                    />
+                    <TextField
+                        select
+                        margin="dense"
+                        label="Type"
+                        value={isExpense ? 1 : 0}
+                        onChange={event => setIsExpense(!!event.target.value)}
+                        SelectProps={{
+                            native: true,
+                        }}
+                        variant="standard"
+                    >
+                        <option value={0}>
+                            Income
+                        </option>
+                        <option value={1}>
+                            Expense
+                        </option>
+                    </TextField>
+                    <TextField
+                        label="Amount"
+                        margin="dense"
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">€</InputAdornment>,
+                        }}
+                        type="number"
+                        value={transaction.amount || ''}
+                        variant="standard"
+                        onChange={event => setTransaction({
+                            ...transaction,
+                            amount: parseFloat(event.target.value),
+                        })}
+                    />
+                </Stack>
             </DialogContent>
             <DialogActions>
                 <Button onClick={props.onCancel}>Cancel</Button>

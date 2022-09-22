@@ -1,5 +1,6 @@
 import {Fab, IconButton, Table, TableBody, TableCell, TableRow} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import dayjs, { Dayjs } from 'dayjs';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
@@ -8,6 +9,7 @@ import "./Transactions.css";
 import {TransactionAmount} from "../TransactionAmount/TransactionAmount";
 
 export interface Transaction {
+    date: string;
     transactionId: string;
     amount: number;
     description: string;
@@ -34,6 +36,9 @@ export const Transactions = (props: TransactionsProps) => {
             <Table style={{width: 700}}><TableBody>
                 {props.items.map((item) => (
                     <TableRow key={item.transactionId}>
+                        <TableCell width={100}>
+                            {dayjs(item.date).format('l')}
+                        </TableCell>
                         <TableCell>
                             {item.description}
                         </TableCell>
@@ -68,7 +73,12 @@ export const Transactions = (props: TransactionsProps) => {
                 }}
                 aria-label="add"
                 className="Fab"
-                onClick={() => setEditedTransaction({amount: 0, description: '', transactionId: crypto.randomUUID()})}
+                onClick={() => setEditedTransaction({
+                    date: dayjs().toString(),
+                    amount: 0,
+                    description: '',
+                    transactionId: crypto.randomUUID()
+                })}
             >
                 <AddIcon/>
             </Fab>
