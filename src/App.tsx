@@ -25,6 +25,10 @@ function App() {
                             setModel(m);
                             localStorage.setItem(getModelKey(username), JSON.stringify(m));
                         }}
+                        onLogout={() => {
+                            localStorage.removeItem(authKey);
+                            setModel(undefined);
+                        }}
                     />
                 )
                 : (
