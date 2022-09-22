@@ -2,9 +2,8 @@ import {Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, List
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
 
-export type Page = 'transactions' | 'reports' | 'settings' | 'logout';
+export type Page = 'transactions' | 'reports' | 'settings';
 
 interface SiderProps {
     page: Page;
@@ -42,15 +41,6 @@ export const Sider = (props: SiderProps) => {
                                 <SettingsIcon/>
                             </ListItemIcon>
                             <ListItemText primary="Settings" />
-                        </ListItemButton>
-                    </ListItem>
-                    <Divider />
-                    <ListItem disablePadding>
-                        <ListItemButton selected={props.page === 'logout'} onClick={() => props.onChange('logout')}>
-                            <ListItemIcon>
-                                <LogoutIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Logout" />
                         </ListItemButton>
                     </ListItem>
                 </List>

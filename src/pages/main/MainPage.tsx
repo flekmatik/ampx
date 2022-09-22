@@ -1,13 +1,8 @@
 import {useState} from "react";
 import {Transaction, Transactions} from "../../components/transactions/Transactions";
-import {AppBar} from "@mui/material";
+import {AppBar, Button, IconButton, Toolbar, Typography} from "@mui/material";
 import {Page, Sider} from "../../components/Sider/Sider";
-
-const ContentTypes = {
-    transactions: Transactions,
-};
-
-type ContentTypeList = keyof typeof ContentTypes;
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 export interface Model {
     transactions: Transaction[];
@@ -39,16 +34,26 @@ export const MainPage = (props: MainPageProps) => {
 
     return (
         <div className="Container">
-            <AppBar position="static" color="default"/>
+            <AppBar position="static" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                    >
+                        <AccountBalanceWalletIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
+                        Amp X Expenses tracker
+                    </Typography>
+                    <Button color="inherit" onClick={() => props.onLogout()}>Logout</Button>
+                </Toolbar>
+            </AppBar>
             <Sider
                 page={page}
-                onChange={page => {
-                    if (page === 'logout') {
-                        props.onLogout();
-                    } else {
-                        setPage(page);
-                    }
-                }}
+                onChange={page => setPage(page)}
             />
             {getContent()}
         </div>
