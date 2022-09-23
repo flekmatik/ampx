@@ -1,10 +1,10 @@
-import {useState} from "react";
-import {Transaction, TransactionsView} from "../../views/TransactionsView/TransactionsView";
-import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/material";
-import {Page, Sider} from "../../components/Sider/Sider";
+import { useState } from "react";
+import { Transaction, TransactionsView } from "../../views/TransactionsView/TransactionsView";
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { Page, Sider } from "../../components/Sider/Sider";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import {SettingsView} from "../../views/SettingsView/SettingsView";
-import {ReportsView} from "../../views/ReportsView/ReportsView";
+import { SettingsView } from "../../views/SettingsView/SettingsView";
+import { ReportsView } from "../../views/ReportsView/ReportsView";
 
 export interface Category {
     id: string;

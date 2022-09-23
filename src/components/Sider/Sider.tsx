@@ -1,4 +1,12 @@
-import {Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar} from "@mui/material";
+import {
+    Box,
+    Divider,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+} from "@mui/material";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -19,11 +27,12 @@ export const Sider = (props: SiderProps) => {
             >
                 <List>
                     <ListItem disablePadding>
-                        <ListItemButton selected={props.page === 'transactions'} onClick={() => props.onChange('transactions')}>
+                        <ListItemButton selected={props.page === 'transactions'}
+                                        onClick={() => props.onChange('transactions')}>
                             <ListItemIcon>
                                 <ReceiptIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Transactions" />
+                            <ListItemText primary="Transactions"/>
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -31,16 +40,16 @@ export const Sider = (props: SiderProps) => {
                             <ListItemIcon>
                                 <AssessmentIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Reports" />
+                            <ListItemText primary="Reports"/>
                         </ListItemButton>
                     </ListItem>
-                    <Divider />
+                    <Divider/>
                     <ListItem disablePadding>
                         <ListItemButton selected={props.page === 'settings'} onClick={() => props.onChange('settings')}>
                             <ListItemIcon>
                                 <SettingsIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Settings" />
+                            <ListItemText primary="Settings"/>
                         </ListItemButton>
                     </ListItem>
                 </List>

@@ -1,5 +1,5 @@
-import {Transaction} from "../../views/TransactionsView/TransactionsView";
-import {Typography} from "@mui/material";
+import { Transaction } from "../../views/TransactionsView/TransactionsView";
+import { Typography } from "@mui/material";
 
 interface TransactionAmountProps {
     transaction: Transaction;

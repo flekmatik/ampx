@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import './App.css';
-import {LoginPage} from "./pages/LoginPage/LoginPage";
-import {MainPage, Model} from "./pages/MainPage/MainPage";
+import React, { useState } from 'react';
+import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { MainPage, Model } from "./pages/MainPage/MainPage";
 
 const authKey = 'auth';
 
@@ -28,7 +27,7 @@ const getModel = (username: string) => {
     return jsonModel && JSON.parse(jsonModel);
 }
 
-function App() {
+export function App() {
     const [username, setUsername] = useState(localStorage.getItem(authKey) ?? '');
     const [model, setModel] = useState<Model | undefined>(getModel(username));
 
@@ -57,5 +56,3 @@ function App() {
             />
         );
 }
-
-export default App;

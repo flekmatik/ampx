@@ -1,6 +1,6 @@
-import {Bar, ComposedChart, Line, Tooltip, XAxis, YAxis} from "recharts";
+import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
 import dayjs from "dayjs";
-import {Transaction} from "../../views/TransactionsView/TransactionsView";
+import { Transaction } from "../../views/TransactionsView/TransactionsView";
 
 interface CashflowChartProps {
     transactions: Transaction[];

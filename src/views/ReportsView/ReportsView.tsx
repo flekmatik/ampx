@@ -1,10 +1,10 @@
-import {Box, Typography} from "@mui/material";
-import {Transaction} from "../TransactionsView/TransactionsView";
-import {Category} from "../../pages/MainPage/MainPage";
+import { Box, Typography } from "@mui/material";
+import { Transaction } from "../TransactionsView/TransactionsView";
+import { Category } from "../../pages/MainPage/MainPage";
 import dayjs from "dayjs";
 import utc from 'dayjs/plugin/utc';
-import {CashflowChart} from "../../components/CashflowChart/CashflowChart";
-import {CategoryChart} from "../../components/CategoryChart/CategoryChart";
+import { CashflowChart } from "../../components/CashflowChart/CashflowChart";
+import { CategoryChart } from "../../components/CategoryChart/CategoryChart";
 
 dayjs.extend(utc)
 
