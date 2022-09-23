@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
-import {LoginPage} from "./pages/login/LoginPage";
-import {MainPage, Model} from "./pages/main/MainPage";
+import {LoginPage} from "./pages/LoginPage/LoginPage";
+import {MainPage, Model} from "./pages/MainPage/MainPage";
 
 const authKey = 'auth';
 

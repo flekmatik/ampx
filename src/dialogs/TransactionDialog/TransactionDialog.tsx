@@ -1,4 +1,4 @@
-import {Transaction} from "../transactions/Transactions";
+import {Transaction} from "../../views/TransactionsView/TransactionsView";
 import {
     Button,
     Dialog,
@@ -14,8 +14,8 @@ import "./TransactionDialog.css";
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import {Category} from "../../pages/main/MainPage";
-import {CategoryItem} from "../CategoryItem/CategoryItem";
+import {Category} from "../../pages/MainPage/MainPage";
+import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
 
 interface TransactionDialogProps {
     initial: Transaction;

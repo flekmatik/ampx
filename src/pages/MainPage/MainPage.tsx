@@ -1,8 +1,9 @@
 import {useState} from "react";
-import {Transaction, Transactions} from "../../components/transactions/Transactions";
+import {Transaction, TransactionsView} from "../../views/TransactionsView/TransactionsView";
 import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/material";
 import {Page, Sider} from "../../components/Sider/Sider";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import {SettingsView} from "../../views/SettingsView/SettingsView";
 
 export interface Category {
     id: string;
@@ -28,7 +29,7 @@ export const MainPage = (props: MainPageProps) => {
         switch (page) {
             case "transactions":
                 return (
-                    <Transactions
+                    <TransactionsView
                         items={props.model.transactions}
                         categories={props.model.categories}
                         onChange={value => props.onChange({
@@ -37,12 +38,22 @@ export const MainPage = (props: MainPageProps) => {
                         })}
                     />
                 );
+            case "settings":
+                return (
+                    <SettingsView
+                        categories={props.model.categories}
+                        onChange={value => props.onChange({
+                            ...props.model,
+                            categories: value
+                        })}
+                    />
+                )
         }
     }
 
     return (
-        <Box>
-            <AppBar position="fixed" sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+            <AppBar position="sticky">
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -59,13 +70,14 @@ export const MainPage = (props: MainPageProps) => {
                     <Button color="inherit" onClick={() => props.onLogout()}>Logout</Button>
                 </Toolbar>
             </AppBar>
-            <Sider
-                page={page}
-                onChange={page => setPage(page)}
-            />
-            <Box>
-                <Toolbar/>
-                {getContent()}
+            <Box sx={{ display: 'flex'}}>
+                <Sider
+                    page={page}
+                    onChange={page => setPage(page)}
+                />
+                <Box sx={{ padding: '16px' }}>
+                    {getContent()}
+                </Box>
             </Box>
         </Box>
     );

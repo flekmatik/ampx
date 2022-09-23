@@ -12,8 +12,7 @@ interface SiderProps {
 
 export const Sider = (props: SiderProps) => {
     return (
-        <Drawer variant="permanent">
-            <Toolbar />
+        <div>
             <Box
                 sx={{width: 250}}
                 role="presentation"
@@ -46,6 +45,6 @@ export const Sider = (props: SiderProps) => {
                     </ListItem>
                 </List>
             </Box>
-        </Drawer>
+        </div>
     );
 }

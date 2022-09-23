@@ -1,4 +1,4 @@
-import {Category} from "../../pages/main/MainPage";
+import {Category} from "../../pages/MainPage/MainPage";
 import {Box} from "@mui/material";
 
 interface CategoryItemProps {

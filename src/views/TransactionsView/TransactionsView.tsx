@@ -4,11 +4,11 @@ import dayjs from 'dayjs';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
-import {TransactionDialog} from "../transaction-dialog/TransactionDialog";
+import {TransactionDialog} from "../../dialogs/TransactionDialog/TransactionDialog";
 import "./Transactions.css";
-import {TransactionAmount} from "../TransactionAmount/TransactionAmount";
-import {Category} from "../../pages/main/MainPage";
-import {CategoryItem} from "../CategoryItem/CategoryItem";
+import {TransactionAmount} from "../../components/TransactionAmount/TransactionAmount";
+import {Category} from "../../pages/MainPage/MainPage";
+import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
 
 export interface Transaction {
     date: string;
@@ -24,7 +24,7 @@ interface TransactionsProps {
     onChange: (value: Transaction[]) => void;
 }
 
-export const Transactions = (props: TransactionsProps) => {
+export const TransactionsView = (props: TransactionsProps) => {
     const [editedTransaction, setEditedTransaction] = useState<Transaction>();
     return (
         <Box
