@@ -4,6 +4,7 @@ import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/materia
 import {Page, Sider} from "../../components/Sider/Sider";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import {SettingsView} from "../../views/SettingsView/SettingsView";
+import {ReportsView} from "../../views/ReportsView/ReportsView";
 
 export interface Category {
     id: string;
@@ -50,12 +51,16 @@ export const MainPage = (props: MainPageProps) => {
                             categories: value
                         })}
                     />
-                )
+                );
+            case "reports":
+                return (
+                    <ReportsView transactions={props.model.transactions} categories={props.model.categories}/>
+                );
         }
     }
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+        <Box sx={{display: 'flex', flexDirection: 'column'}}>
             <AppBar position="sticky">
                 <Toolbar>
                     <IconButton
@@ -73,12 +78,12 @@ export const MainPage = (props: MainPageProps) => {
                     <Button color="inherit" onClick={() => props.onLogout()}>Logout</Button>
                 </Toolbar>
             </AppBar>
-            <Box sx={{ display: 'flex'}}>
+            <Box sx={{display: 'flex'}}>
                 <Sider
                     page={page}
                     onChange={page => setPage(page)}
                 />
-                <Box sx={{ padding: '16px' }}>
+                <Box sx={{padding: '16px'}}>
                     {getContent()}
                 </Box>
             </Box>

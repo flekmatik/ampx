@@ -16,6 +16,7 @@ import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {Category} from "../../pages/MainPage/MainPage";
 import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
+import {Dayjs} from "dayjs";
 
 interface TransactionDialogProps {
     initial: Transaction;
@@ -23,6 +24,8 @@ interface TransactionDialogProps {
     onCancel: () => void;
     onConfirm: (value: Transaction) => void;
 }
+
+export const dayJsToDateString = (d?: Dayjs | null) => d?.toISOString().split('T')[0] || '';
 
 export const TransactionDialog = (props: TransactionDialogProps) => {
     const [transaction, setTransaction] = useState({
@@ -40,9 +43,9 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                             label="Date"
                             inputFormat="DD/MM/YYYY"
                             value={transaction.date}
-                            onChange={(date) => setTransaction({
+                            onChange={(date?: Dayjs | null) => setTransaction({
                                 ...transaction,
-                                date: date!,
+                                date: dayJsToDateString(date),
                             })}
                             renderInput={(params) => <TextField {...params} />}
                         />
@@ -70,7 +73,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                     >
                         {props.categories.map(category => (
                             <MenuItem key={category.id} value={category.id}>
-                                <CategoryItem category={category} />
+                                <CategoryItem category={category}/>
                             </MenuItem>
                         ))}
                     </TextField>

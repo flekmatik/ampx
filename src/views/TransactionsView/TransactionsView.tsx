@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
-import {TransactionDialog} from "../../dialogs/TransactionDialog/TransactionDialog";
+import {dayJsToDateString, TransactionDialog} from "../../dialogs/TransactionDialog/TransactionDialog";
 import "./Transactions.css";
 import {TransactionAmount} from "../../components/TransactionAmount/TransactionAmount";
 import {Category} from "../../pages/MainPage/MainPage";
@@ -80,7 +80,7 @@ export const TransactionsView = (props: TransactionsProps) => {
                 aria-label="add"
                 className="Fab"
                 onClick={() => setEditedTransaction({
-                    date: dayjs().toString(),
+                    date: dayJsToDateString(dayjs()),
                     amount: 0,
                     description: '',
                     transactionId: crypto.randomUUID(),
