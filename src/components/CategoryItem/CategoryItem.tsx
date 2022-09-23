@@ -1,5 +1,5 @@
-import { Category } from "../../pages/MainPage/MainPage";
-import { Box } from "@mui/material";
+import { Category } from '../../pages/MainPage/MainPage';
+import { Box } from '@mui/material';
 
 interface CategoryItemProps {
     category: Category;

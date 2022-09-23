@@ -1,12 +1,9 @@
-import { Box, Typography } from "@mui/material";
-import { Transaction } from "../TransactionsView/TransactionsView";
-import { Category } from "../../pages/MainPage/MainPage";
-import dayjs from "dayjs";
-import utc from 'dayjs/plugin/utc';
-import { CashflowChart } from "../../components/CashflowChart/CashflowChart";
-import { CategoryChart } from "../../components/CategoryChart/CategoryChart";
+import { Box, Typography } from '@mui/material';
+import { CashflowChart } from '../../components/CashflowChart/CashflowChart';
+import { CategoryChart } from '../../components/CategoryChart/CategoryChart';
+import { Category } from '../../pages/MainPage/MainPage';
+import { Transaction } from '../TransactionsView/TransactionsView';
 
-dayjs.extend(utc)
 
 interface ReportsViewProps {
     transactions: Transaction[];
@@ -44,4 +41,4 @@ export const ReportsView = (props: ReportsViewProps) => {
             </Box>
         </Box>
     );
-}
+};

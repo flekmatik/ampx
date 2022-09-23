@@ -6,7 +6,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-} from "@mui/material";
+} from '@mui/material';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -56,4 +56,4 @@ export const Sider = (props: SiderProps) => {
             </Box>
         </div>
     );
-}
+};

@@ -1,6 +1,6 @@
-import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
-import { Transaction } from "../../views/TransactionsView/TransactionsView";
-import { Category } from "../../pages/MainPage/MainPage";
+import { Cell, Legend, Pie, PieChart, Tooltip } from 'recharts';
+import { Transaction } from '../../views/TransactionsView/TransactionsView';
+import { Category } from '../../pages/MainPage/MainPage';
 
 interface CategoryChartProps {
     transactions: Transaction[];
@@ -42,4 +42,4 @@ export const CategoryChart = (props: CategoryChartProps) => {
             </Pie>
         </PieChart>
     );
-}
+};

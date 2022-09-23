@@ -1,21 +1,22 @@
-import { Transaction } from "../../views/TransactionsView/TransactionsView";
 import {
     Button,
     Dialog,
     DialogActions,
     DialogContent,
     DialogTitle,
-    InputAdornment, MenuItem,
+    InputAdornment,
+    MenuItem,
     Stack,
-    TextField
-} from "@mui/material";
-import { useState } from "react";
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+    TextField,
+} from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Category } from "../../pages/MainPage/MainPage";
-import { CategoryItem } from "../../components/CategoryItem/CategoryItem";
-import { Dayjs } from "dayjs";
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { Dayjs } from 'dayjs';
+import { useState } from 'react';
+import { CategoryItem } from '../../components/CategoryItem/CategoryItem';
+import { Category } from '../../pages/MainPage/MainPage';
+import { Transaction } from '../../views/TransactionsView/TransactionsView';
 
 interface TransactionDialogProps {
     initial: Transaction;
@@ -118,12 +119,12 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                     variant="contained"
                     onClick={() => props.onConfirm({
                         ...transaction,
-                        amount: transaction.amount * (isExpense ? -1 : 1)
+                        amount: transaction.amount * (isExpense ? -1 : 1),
                     })}
                 >
                     Confirm
                 </Button>
             </DialogActions>
         </Dialog>
-    )
-}
+    );
+};

@@ -1,13 +1,13 @@
-import { Box, Fab, IconButton, Table, TableBody, TableCell, TableRow } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import dayjs from 'dayjs';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useState } from "react";
-import { dayJsToDateString, TransactionDialog } from "../../dialogs/TransactionDialog/TransactionDialog";
-import { TransactionAmount } from "../../components/TransactionAmount/TransactionAmount";
-import { Category } from "../../pages/MainPage/MainPage";
-import { CategoryItem } from "../../components/CategoryItem/CategoryItem";
+import EditIcon from '@mui/icons-material/Edit';
+import { Box, Fab, IconButton, Table, TableBody, TableCell, TableRow } from '@mui/material';
+import dayjs from 'dayjs';
+import { useState } from 'react';
+import { CategoryItem } from '../../components/CategoryItem/CategoryItem';
+import { TransactionAmount } from '../../components/TransactionAmount/TransactionAmount';
+import { dayJsToDateString, TransactionDialog } from '../../dialogs/TransactionDialog/TransactionDialog';
+import { Category } from '../../pages/MainPage/MainPage';
 
 export interface Transaction {
     date: string;
@@ -103,4 +103,4 @@ export const TransactionsView = (props: TransactionsProps) => {
             )}
         </Box>
     );
-}
+};

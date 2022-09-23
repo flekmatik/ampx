@@ -1,16 +1,10 @@
-import {
-    Box,
-    Button,
-    IconButton,
-    Table, TableBody, TableCell, TableRow,
-    Typography
-} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Category } from "../../pages/MainPage/MainPage";
-import { CategoryItem } from "../../components/CategoryItem/CategoryItem";
-import { useState } from "react";
-import { CategoryDialog } from "../../dialogs/CategoryDialog/CategoryDialog";
+import { Box, Button, IconButton, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
+import { useState } from 'react';
+import { CategoryItem } from '../../components/CategoryItem/CategoryItem';
+import { CategoryDialog } from '../../dialogs/CategoryDialog/CategoryDialog';
+import { Category } from '../../pages/MainPage/MainPage';
 
 interface SettingsViewProps {
     categories: Category[];
@@ -74,4 +68,4 @@ export const SettingsView = (props: SettingsViewProps) => {
             )}
         </Box>
     );
-}
+};

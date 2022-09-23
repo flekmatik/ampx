@@ -1,6 +1,6 @@
-import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
-import dayjs from "dayjs";
-import { Transaction } from "../../views/TransactionsView/TransactionsView";
+import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
+import dayjs from 'dayjs';
+import { Transaction } from '../../views/TransactionsView/TransactionsView';
 
 interface CashflowChartProps {
     transactions: Transaction[];
@@ -15,7 +15,7 @@ const formatter = (dayNum: number) => dayjs(dayNum * 86400000).format('DD/MM');
 export const CashflowChart = (props: CashflowChartProps) => {
     const dayTransactions = props.transactions.map(t => ({
         ...t,
-        date: dayjs(t.date, 'YYYY-MM-DD').utc(true).valueOf() / 86400000
+        date: dayjs(t.date, 'YYYY-MM-DD').utc(true).valueOf() / 86400000,
     }));
     const days = dayTransactions.map(t => t.date);
     const minDay = Math.min(...days);
@@ -51,7 +51,7 @@ export const CashflowChart = (props: CashflowChartProps) => {
             return ({
                 ...item,
                 total: currentTotal,
-            })
+            });
         });
 
     return (
@@ -67,4 +67,4 @@ export const CashflowChart = (props: CashflowChartProps) => {
             <YAxis unit="€"/>
         </ComposedChart>
     );
-}
+};

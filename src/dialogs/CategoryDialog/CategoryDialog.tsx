@@ -1,14 +1,6 @@
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Stack,
-    TextField
-} from "@mui/material";
-import { useState } from "react";
-import { Category } from "../../pages/MainPage/MainPage";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField } from '@mui/material';
+import { useState } from 'react';
+import { Category } from '../../pages/MainPage/MainPage';
 
 interface TransactionDialogProps {
     initial: Category;
@@ -58,5 +50,5 @@ export const CategoryDialog = (props: TransactionDialogProps) => {
                 </Button>
             </DialogActions>
         </Dialog>
-    )
-}
+    );
+};
