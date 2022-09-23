@@ -36,7 +36,7 @@ export const TransactionsView = (props: TransactionsProps) => {
             }}
         >
             <Table style={{ width: 700, margin: 16 }}><TableBody>
-                {props.items.map((item) => (
+                {props.items.sort((a, b) => a.date.localeCompare(b.date)).map((item) => (
                     <TableRow key={item.transactionId}>
                         <TableCell width={100}>
                             {dayjs(item.date).format('l')}

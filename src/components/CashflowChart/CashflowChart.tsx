@@ -23,7 +23,7 @@ export const CashflowChart = (props: CashflowChartProps) => {
     const days = transactionsWithDays.map(({ day }) => day);
     const minDay = Math.min(...days);
     const maxDay = Math.max(...days);
-    const emptyChartData = [...Array(maxDay - minDay)]
+    const emptyChartData = [...Array(maxDay - minDay + 1)]
         .map((_, index) => minDay + index)
         .reduce<CashflowChartData>((acc, day) => ({ ...acc, [day]: {} }), {});
 
@@ -32,6 +32,7 @@ export const CashflowChart = (props: CashflowChartProps) => {
             const { day, amount } = transaction;
             const type = amount < 0 ? 'expenses' : 'income';
             const entry = acc[day];
+            console.log('L', entry, day, emptyChartData, acc)
             return {
                 ...acc,
                 [day]: {
@@ -60,7 +61,7 @@ export const CashflowChart = (props: CashflowChartProps) => {
             <Line type="monotone" dataKey="total" stroke="#0000ff" dot={false} />
             <Tooltip labelFormatter={formatter} />
             <XAxis
-                dataKey="dayNum"
+                dataKey="day"
                 tickFormatter={formatter}
             />
             <YAxis unit="€" />
