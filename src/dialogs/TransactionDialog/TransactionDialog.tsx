@@ -10,7 +10,6 @@ import {
     TextField
 } from "@mui/material";
 import {useState} from "react";
-import "./TransactionDialog.css";
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
@@ -25,7 +24,7 @@ interface TransactionDialogProps {
     onConfirm: (value: Transaction) => void;
 }
 
-export const dayJsToDateString = (d?: Dayjs | null) => d?.toISOString().split('T')[0] || '';
+export const dayJsToDateString = (d?: Dayjs | null) => d?.utc(true).toISOString().split('T')[0] || '';
 
 export const TransactionDialog = (props: TransactionDialogProps) => {
     const [transaction, setTransaction] = useState({

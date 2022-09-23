@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import "./Transactions.css";
 import {Category} from "../../pages/MainPage/MainPage";
 import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
 import {useState} from "react";

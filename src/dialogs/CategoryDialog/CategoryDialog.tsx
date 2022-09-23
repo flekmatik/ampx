@@ -8,7 +8,6 @@ import {
     TextField
 } from "@mui/material";
 import {useState} from "react";
-import "./TransactionDialog.css";
 import {Category} from "../../pages/MainPage/MainPage";
 
 interface TransactionDialogProps {

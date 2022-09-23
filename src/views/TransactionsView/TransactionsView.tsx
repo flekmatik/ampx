@@ -5,7 +5,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useState} from "react";
 import {dayJsToDateString, TransactionDialog} from "../../dialogs/TransactionDialog/TransactionDialog";
-import "./Transactions.css";
 import {TransactionAmount} from "../../components/TransactionAmount/TransactionAmount";
 import {Category} from "../../pages/MainPage/MainPage";
 import {CategoryItem} from "../../components/CategoryItem/CategoryItem";

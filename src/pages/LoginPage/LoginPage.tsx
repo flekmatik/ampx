@@ -1,5 +1,4 @@
 import {Button, TextField} from "@mui/material";
-import './LoginPage.css';
 import {useState} from "react";
 
 interface LoginPageProps {
@@ -10,7 +9,16 @@ export const LoginPage = (props: LoginPageProps) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     return (
-        <form className="Container">
+        <form
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+                gap: 10,
+            }}
+        >
             <TextField
                 value={username}
                 label="Username"
