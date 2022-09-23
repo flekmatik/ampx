@@ -1,13 +1,13 @@
-import {Box, Fab, IconButton, Table, TableBody, TableCell, TableRow} from "@mui/material";
+import { Box, Fab, IconButton, Table, TableBody, TableCell, TableRow } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import dayjs from 'dayjs';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {useState} from "react";
-import {dayJsToDateString, TransactionDialog} from "../../dialogs/TransactionDialog/TransactionDialog";
-import {TransactionAmount} from "../../components/TransactionAmount/TransactionAmount";
-import {Category} from "../../pages/MainPage/MainPage";
-import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
+import { useState } from "react";
+import { dayJsToDateString, TransactionDialog } from "../../dialogs/TransactionDialog/TransactionDialog";
+import { TransactionAmount } from "../../components/TransactionAmount/TransactionAmount";
+import { Category } from "../../pages/MainPage/MainPage";
+import { CategoryItem } from "../../components/CategoryItem/CategoryItem";
 
 export interface Transaction {
     date: string;
@@ -45,7 +45,7 @@ export const TransactionsView = (props: TransactionsProps) => {
                             {item.description}
                         </TableCell>
                         <TableCell sx={{}}>
-                            <CategoryItem category={props.categories.find(c => c.id === item.categoryId)!} />
+                            <CategoryItem category={props.categories.find(c => c.id === item.categoryId)!}/>
                         </TableCell>
                         <TableCell align="right">
                             <TransactionAmount transaction={item}/>

@@ -1,5 +1,5 @@
-import {Button, TextField} from "@mui/material";
-import {useState} from "react";
+import { Button, TextField } from "@mui/material";
+import { useState } from "react";
 
 interface LoginPageProps {
     onLogin: (username: string) => void;

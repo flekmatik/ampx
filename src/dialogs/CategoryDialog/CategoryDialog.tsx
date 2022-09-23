@@ -7,8 +7,8 @@ import {
     Stack,
     TextField
 } from "@mui/material";
-import {useState} from "react";
-import {Category} from "../../pages/MainPage/MainPage";
+import { useState } from "react";
+import { Category } from "../../pages/MainPage/MainPage";
 
 interface TransactionDialogProps {
     initial: Category;
@@ -22,7 +22,7 @@ export const CategoryDialog = (props: TransactionDialogProps) => {
         <Dialog open={true} onClose={props.onCancel} fullWidth>
             <DialogTitle>Edit category</DialogTitle>
             <DialogContent sx={{}}>
-                <Stack >
+                <Stack>
                     <TextField
                         margin="dense"
                         variant="standard"

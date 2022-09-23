@@ -7,10 +7,10 @@ import {
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import {Category} from "../../pages/MainPage/MainPage";
-import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
-import {useState} from "react";
-import {CategoryDialog} from "../../dialogs/CategoryDialog/CategoryDialog";
+import { Category } from "../../pages/MainPage/MainPage";
+import { CategoryItem } from "../../components/CategoryItem/CategoryItem";
+import { useState } from "react";
+import { CategoryDialog } from "../../dialogs/CategoryDialog/CategoryDialog";
 
 interface SettingsViewProps {
     categories: Category[];

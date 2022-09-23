@@ -1,4 +1,4 @@
-import {Transaction} from "../../views/TransactionsView/TransactionsView";
+import { Transaction } from "../../views/TransactionsView/TransactionsView";
 import {
     Button,
     Dialog,
@@ -9,13 +9,13 @@ import {
     Stack,
     TextField
 } from "@mui/material";
-import {useState} from "react";
-import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
-import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
-import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import {Category} from "../../pages/MainPage/MainPage";
-import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
-import {Dayjs} from "dayjs";
+import { useState } from "react";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Category } from "../../pages/MainPage/MainPage";
+import { CategoryItem } from "../../components/CategoryItem/CategoryItem";
+import { Dayjs } from "dayjs";
 
 interface TransactionDialogProps {
     initial: Transaction;

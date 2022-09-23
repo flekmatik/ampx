@@ -1,6 +1,6 @@
-import {Cell, Legend, Pie, PieChart, Tooltip} from "recharts";
-import {Transaction} from "../../views/TransactionsView/TransactionsView";
-import {Category} from "../../pages/MainPage/MainPage";
+import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
+import { Transaction } from "../../views/TransactionsView/TransactionsView";
+import { Category } from "../../pages/MainPage/MainPage";
 
 interface CategoryChartProps {
     transactions: Transaction[];
@@ -22,7 +22,7 @@ export const CategoryChart = (props: CategoryChartProps) => {
     return (
         <PieChart width={250} height={250}>
             <Legend
-                formatter={value => <span style={{ color: 'black' }}>{value}</span>}
+                formatter={value => <span style={{color: 'black'}}>{value}</span>}
             />
             <Tooltip/>
             <Pie
@@ -33,7 +33,7 @@ export const CategoryChart = (props: CategoryChartProps) => {
                 cy="50%"
                 fill="#8884d8"
             >
-                {data.map((entry, index) => (
+                {data.map(entry => (
                     <Cell
                         key={entry.id}
                         fill={entry.color}
