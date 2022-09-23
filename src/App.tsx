@@ -11,12 +11,12 @@ const emptyModel: Model = {
         {
             id: 'basic',
             title: 'Basic',
-            color: 'blue',
+            color: '#0000FF',
         },
         {
             id: 'enhanced',
             title: 'Enhanced',
-            color: 'yellow',
+            color: '#FFFF00',
         },
     ]
 };

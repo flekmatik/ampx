@@ -7,8 +7,10 @@ interface CashflowChartProps {
 }
 
 type CashflowChartData = {
-    [date: string]: { incomes?: number, expenses?: number };
+    [date: string]: { income?: number, expenses?: number };
 }
+
+const formatter = (dayNum: number) => dayjs(dayNum * 86400000).format('DD/MM');
 
 export const CashflowChart = (props: CashflowChartProps) => {
     const dayTransactions = props.transactions.map(t => ({
@@ -25,7 +27,7 @@ export const CashflowChart = (props: CashflowChartProps) => {
     const cashflowChartData = props.transactions
         .reduce<CashflowChartData>((acc, transaction) => {
             const {date, amount} = transaction;
-            const type = amount < 0 ? 'expenses' : 'incomes';
+            const type = amount < 0 ? 'expenses' : 'income';
             const dayNum = dayjs(date, 'YYYY-MM-DD').utc(true).valueOf() / 86400000;
             const current = acc[dayNum];
             return {
@@ -41,7 +43,7 @@ export const CashflowChart = (props: CashflowChartProps) => {
         .map(([dayNum, data]: any) => ({dayNum, ...data}))
         .sort((a, b) => a.dayNum - b.dayNum)
         .map((item, index, acc) => {
-            const dayTotal = (acc[index].incomes ?? 0) + (acc[index].expenses ?? 0);
+            const dayTotal = (acc[index].income ?? 0) + (acc[index].expenses ?? 0);
             currentTotal += dayTotal;
             return ({
                 ...item,
@@ -52,12 +54,12 @@ export const CashflowChart = (props: CashflowChartProps) => {
     return (
         <ComposedChart width={400} height={200} data={d} stackOffset="sign">
             <Bar dataKey="expenses" stackId="a" fill="#ff0000"/>
-            <Bar dataKey="incomes" stackId="a" fill="#00ff00"/>
+            <Bar dataKey="income" stackId="a" fill="#00ff00"/>
             <Line type="monotone" dataKey="total" stroke="#0000ff" dot={false}/>
-            <Tooltip/>
+            <Tooltip labelFormatter={formatter}/>
             <XAxis
                 dataKey="dayNum"
-                tickFormatter={dayNum => dayjs(dayNum * 86400000).format('DD/MM')}
+                tickFormatter={formatter}
             />
             <YAxis unit="€"/>
         </ComposedChart>

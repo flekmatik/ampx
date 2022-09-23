@@ -1,4 +1,4 @@
-import {Cell, Legend, Pie, PieChart} from "recharts";
+import {Cell, Legend, Pie, PieChart, Tooltip} from "recharts";
 import {Transaction} from "../../views/TransactionsView/TransactionsView";
 import {Category} from "../../pages/MainPage/MainPage";
 
@@ -24,6 +24,7 @@ export const CategoryChart = (props: CategoryChartProps) => {
             <Legend
                 formatter={value => <span style={{ color: 'black' }}>{value}</span>}
             />
+            <Tooltip/>
             <Pie
                 data={data}
                 dataKey="total"
