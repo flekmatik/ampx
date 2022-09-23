@@ -7,6 +7,7 @@ import {useState} from "react";
 import {TransactionDialog} from "../transaction-dialog/TransactionDialog";
 import "./Transactions.css";
 import {TransactionAmount} from "../TransactionAmount/TransactionAmount";
+import {Category} from "../../pages/main/MainPage";
 
 export interface Transaction {
     date: string;
@@ -18,6 +19,7 @@ export interface Transaction {
 
 interface TransactionsProps {
     items: Transaction[];
+    categories: Category[];
     onChange: (value: Transaction[]) => void;
 }
 
@@ -85,6 +87,7 @@ export const Transactions = (props: TransactionsProps) => {
             {editedTransaction && (
                 <TransactionDialog
                     initial={editedTransaction}
+                    categories={props.categories}
                     onCancel={() => setEditedTransaction(undefined)}
                     onConfirm={transaction => {
                         props.onChange(props.items.some(item => item.transactionId === transaction?.transactionId)

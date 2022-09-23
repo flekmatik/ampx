@@ -7,6 +7,18 @@ const authKey = 'auth';
 
 const emptyModel: Model = {
     transactions: [],
+    categories: [
+        {
+            id: 'basic',
+            title: 'Basic',
+            color: 'blue',
+        },
+        {
+            id: 'enhanced',
+            title: 'Enhanced',
+            color: 'yellow',
+        },
+    ]
 };
 
 const getModelKey = (username: string) => `${username}-model`;
@@ -40,7 +52,7 @@ function App() {
                     localStorage.setItem(authKey, u);
                     const model = getModel(u);
                     setModel(model ?? emptyModel);
-                    setUsername(username);
+                    setUsername(u);
                 }}
             />
         );

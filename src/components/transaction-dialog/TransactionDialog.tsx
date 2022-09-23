@@ -5,7 +5,7 @@ import {
     DialogActions,
     DialogContent,
     DialogTitle,
-    InputAdornment,
+    InputAdornment, MenuItem,
     Stack,
     TextField
 } from "@mui/material";
@@ -14,9 +14,11 @@ import "./TransactionDialog.css";
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {Category} from "../../pages/main/MainPage";
 
 interface TransactionDialogProps {
     initial: Transaction;
+    categories: Category[];
     onCancel: () => void;
     onConfirm: (value: Transaction) => void;
 }
@@ -30,7 +32,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
     return (
         <Dialog open onClose={props.onCancel} fullWidth>
             <DialogTitle>Edit transaction</DialogTitle>
-            <DialogContent sx={{ display: 'flex', flexDirection: 'column'}}>
+            <DialogContent sx={{display: 'flex', flexDirection: 'column'}}>
                 <Stack sx={{marginTop: 1}}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DesktopDatePicker
@@ -54,6 +56,27 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                             description: event.target.value,
                         })}
                     />
+                    <TextField
+                        select
+                        margin="dense"
+                        label="Category"
+                        InputProps={{
+                            startAdornment: <span style={{width: 10, height: 10, backgroundColor: props.categories.find(c => c.id === transaction.categoryId)?.color, margin: 10}}/>,
+                        }}
+                        value={transaction.categoryId}
+                        onChange={event => setTransaction({
+                            ...transaction,
+                            categoryId: event.target.value,
+                        })}
+                        variant="standard"
+                    >
+                        {props.categories.map(category => (
+                            <MenuItem key={category.id} value={category.id}>
+                                <span style={{width: 10, height: 10, backgroundColor: category.color, margin: 10}}/>
+                                {category.title}
+                            </MenuItem>
+                        ))}
+                    </TextField>
                     <TextField
                         select
                         margin="dense"

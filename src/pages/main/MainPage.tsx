@@ -1,11 +1,18 @@
 import {useState} from "react";
 import {Transaction, Transactions} from "../../components/transactions/Transactions";
-import {AppBar, Box, Button, CssBaseline, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, IconButton, Toolbar, Typography} from "@mui/material";
 import {Page, Sider} from "../../components/Sider/Sider";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
+export interface Category {
+    id: string;
+    title: string;
+    color: string;
+}
+
 export interface Model {
     transactions: Transaction[];
+    categories: Category[];
 }
 
 interface MainPageProps {
@@ -23,6 +30,7 @@ export const MainPage = (props: MainPageProps) => {
                 return (
                     <Transactions
                         items={props.model.transactions}
+                        categories={props.model.categories}
                         onChange={value => props.onChange({
                             ...props.model,
                             transactions: value,
@@ -56,7 +64,7 @@ export const MainPage = (props: MainPageProps) => {
                 onChange={page => setPage(page)}
             />
             <Box>
-                <Toolbar />
+                <Toolbar/>
                 {getContent()}
             </Box>
         </Box>
