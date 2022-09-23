@@ -38,7 +38,7 @@ export const Sider = (props: SiderProps) => {
             >
                 <List>
                     {items.flatMap(item => (
-                        <ListItem disablePadding>
+                        <ListItem disablePadding key={item.key}>
                             <ListItemButton
                                 selected={props.page === item.key}
                                 onClick={() => props.onChange(item.key)}
