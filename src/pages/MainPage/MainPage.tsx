@@ -41,6 +41,9 @@ export const MainPage = (props: MainPageProps) => {
             case "settings":
                 return (
                     <SettingsView
+                        usedCategoryIds={props.model.transactions
+                            .map(t => t.categoryId)
+                            .filter((id, index, arr) => arr.indexOf(id) === index)}
                         categories={props.model.categories}
                         onChange={value => props.onChange({
                             ...props.model,

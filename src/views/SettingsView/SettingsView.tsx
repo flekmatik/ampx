@@ -2,48 +2,77 @@ import {
     Box,
     Button,
     IconButton,
-    List,
-    ListItem,
+    Table, TableBody, TableCell, TableRow,
     Typography
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import "./Transactions.css";
 import {Category} from "../../pages/MainPage/MainPage";
 import {CategoryItem} from "../../components/CategoryItem/CategoryItem";
+import {useState} from "react";
+import {CategoryDialog} from "../../dialogs/CategoryDialog/CategoryDialog";
 
 interface SettingsViewProps {
     categories: Category[];
+    usedCategoryIds: string[];
     onChange: (value: Category[]) => void;
 }
 
 export const SettingsView = (props: SettingsViewProps) => {
+    const [editedCategory, setEditedCategory] = useState<Category>();
     return (
         <Box sx={{display: 'flex', flexDirection: 'column'}}>
             <Typography variant="h5">Categories</Typography>
-            <List style={{}}>
+            <Table style={{}}><TableBody>
                 {props.categories.map((item) => (
-                    <ListItem
+                    <TableRow
                         key={item.id}
-                        secondaryAction={
-                            <IconButton aria-label="delete" size="small">
+                    >
+                        <TableCell>
+                            <CategoryItem category={item}/>
+                        </TableCell>
+                        <TableCell>
+                            <IconButton aria-label="delete" size="small" onClick={() => setEditedCategory(item)}>
+                                <EditIcon/>
+                            </IconButton>
+                            <IconButton
+                                aria-label="delete"
+                                size="small"
+                                disabled={props.usedCategoryIds.includes(item.id) || props.categories.length < 2}
+                                onClick={() => props.onChange(props.categories.filter(c => c.id !== item.id))}
+                            >
                                 <DeleteIcon/>
                             </IconButton>
-                        }
-                    >
-                        <CategoryItem category={item}/>
-                    </ListItem>
+                        </TableCell>
+                    </TableRow>
                 ))}
-            </List>
+            </TableBody></Table>
             <Button
                 color="primary"
                 aria-label="add"
                 className="Fab"
                 sx={{alignSelf: 'center'}}
-                onClick={() => {
-                }}
+                onClick={() => setEditedCategory({
+                    title: '',
+                    id: crypto.randomUUID(),
+                    color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+                })}
             >
                 Add Category
             </Button>
+            {editedCategory && (
+                <CategoryDialog
+                    initial={editedCategory}
+                    onCancel={() => setEditedCategory(undefined)}
+                    onConfirm={value => {
+                        props.onChange(props.categories.some(item => item.id === value.id)
+                            ? props.categories.map(item => item.id === value.id ? value : item)
+                            : [...props.categories, value]);
+                        setEditedCategory(undefined);
+                    }}
+                />
+            )}
         </Box>
     );
 }

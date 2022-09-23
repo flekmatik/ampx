@@ -15,7 +15,7 @@ export interface Transaction {
     transactionId: string;
     amount: number;
     description: string;
-    categoryId?: string;
+    categoryId: string;
 }
 
 interface TransactionsProps {
@@ -83,7 +83,8 @@ export const TransactionsView = (props: TransactionsProps) => {
                     date: dayjs().toString(),
                     amount: 0,
                     description: '',
-                    transactionId: crypto.randomUUID()
+                    transactionId: crypto.randomUUID(),
+                    categoryId: props.categories[0].id,
                 })}
             >
                 <AddIcon/>
