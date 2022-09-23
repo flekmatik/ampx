@@ -60,7 +60,7 @@ export const MainPage = (props: MainPageProps) => {
     }
 
     return (
-        <Box sx={{display: 'flex', flexDirection: 'column'}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <AppBar position="sticky">
                 <Toolbar>
                     <IconButton
@@ -68,22 +68,22 @@ export const MainPage = (props: MainPageProps) => {
                         edge="start"
                         color="inherit"
                         aria-label="menu"
-                        sx={{mr: 2}}
+                        sx={{ mr: 2 }}
                     >
                         <AccountBalanceWalletIcon/>
                     </IconButton>
-                    <Typography variant="h6" component="div" sx={{flexGrow: 1, textAlign: 'left'}}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
                         Amp X Expenses tracker
                     </Typography>
                     <Button color="inherit" onClick={() => props.onLogout()}>Logout</Button>
                 </Toolbar>
             </AppBar>
-            <Box sx={{display: 'flex'}}>
+            <Box sx={{ display: 'flex' }}>
                 <Sider
                     page={page}
                     onChange={page => setPage(page)}
                 />
-                <Box sx={{padding: '16px', flexGrow: 1}}>
+                <Box sx={{ padding: '16px', flexGrow: 1 }}>
                     {getContent()}
                 </Box>
             </Box>

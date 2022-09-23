@@ -25,11 +25,11 @@ export const CashflowChart = (props: CashflowChartProps) => {
     }
     const allDays = [...Array(maxDay - minDay)]
         .map((_, index) => minDay + index)
-        .reduce((acc, day) => ({...acc, [day]: {}}), {});
+        .reduce((acc, day) => ({ ...acc, [day]: {} }), {});
 
     const cashflowChartData = props.transactions
         .reduce<CashflowChartData>((acc, transaction) => {
-            const {date, amount} = transaction;
+            const { date, amount } = transaction;
             const type = amount < 0 ? 'expenses' : 'income';
             const dayNum = dayjs(date, 'YYYY-MM-DD').utc(true).valueOf() / 86400000;
             const current = acc[dayNum];
@@ -43,7 +43,7 @@ export const CashflowChart = (props: CashflowChartProps) => {
         }, allDays);
     let currentTotal = 0;
     const d = Object.entries(cashflowChartData)
-        .map(([dayNum, data]: any) => ({dayNum, ...data}))
+        .map(([dayNum, data]: any) => ({ dayNum, ...data }))
         .sort((a, b) => a.dayNum - b.dayNum)
         .map((item, index, acc) => {
             const dayTotal = (acc[index].income ?? 0) + (acc[index].expenses ?? 0);

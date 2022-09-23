@@ -35,7 +35,7 @@ export const TransactionsView = (props: TransactionsProps) => {
                 alignItems: 'start',
             }}
         >
-            <Table style={{width: 700, margin: 16}}><TableBody>
+            <Table style={{ width: 700, margin: 16 }}><TableBody>
                 {props.items.map((item) => (
                     <TableRow key={item.transactionId}>
                         <TableCell width={100}>

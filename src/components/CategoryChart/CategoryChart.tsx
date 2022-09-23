@@ -22,7 +22,7 @@ export const CategoryChart = (props: CategoryChartProps) => {
     return (
         <PieChart width={250} height={250}>
             <Legend
-                formatter={value => <span style={{color: 'black'}}>{value}</span>}
+                formatter={value => <span style={{ color: 'black' }}>{value}</span>}
             />
             <Tooltip/>
             <Pie

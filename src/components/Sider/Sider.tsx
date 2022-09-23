@@ -22,7 +22,7 @@ export const Sider = (props: SiderProps) => {
     return (
         <div>
             <Box
-                sx={{width: 250}}
+                sx={{ width: 250 }}
                 role="presentation"
             >
                 <List>

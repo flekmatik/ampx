@@ -38,7 +38,7 @@ export const ReportsView = (props: ReportsViewProps) => {
                 <CategoryChart
                     transactions={props.transactions
                         .filter(t => t.amount < 0)
-                        .map(t => ({...t, amount: -t.amount}))}
+                        .map(t => ({ ...t, amount: -t.amount }))}
                     categories={props.categories}
                 />
             </Box>

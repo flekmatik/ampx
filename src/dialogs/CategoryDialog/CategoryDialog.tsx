@@ -21,7 +21,7 @@ export const CategoryDialog = (props: TransactionDialogProps) => {
     return (
         <Dialog open={true} onClose={props.onCancel} fullWidth>
             <DialogTitle>Edit category</DialogTitle>
-            <DialogContent sx={{}}>
+            <DialogContent>
                 <Stack>
                     <TextField
                         margin="dense"
