@@ -15,6 +15,7 @@ import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {Category} from "../../pages/main/MainPage";
+import {CategoryItem} from "../CategoryItem/CategoryItem";
 
 interface TransactionDialogProps {
     initial: Transaction;
@@ -30,7 +31,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
     });
     const [isExpense, setIsExpense] = useState(props.initial.amount < 0);
     return (
-        <Dialog open onClose={props.onCancel} fullWidth>
+        <Dialog open={true} onClose={props.onCancel} fullWidth>
             <DialogTitle>Edit transaction</DialogTitle>
             <DialogContent sx={{display: 'flex', flexDirection: 'column'}}>
                 <Stack sx={{marginTop: 1}}>
@@ -60,9 +61,6 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                         select
                         margin="dense"
                         label="Category"
-                        InputProps={{
-                            startAdornment: <span style={{width: 10, height: 10, backgroundColor: props.categories.find(c => c.id === transaction.categoryId)?.color, margin: 10}}/>,
-                        }}
                         value={transaction.categoryId}
                         onChange={event => setTransaction({
                             ...transaction,
@@ -72,8 +70,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                     >
                         {props.categories.map(category => (
                             <MenuItem key={category.id} value={category.id}>
-                                <span style={{width: 10, height: 10, backgroundColor: category.color, margin: 10}}/>
-                                {category.title}
+                                <CategoryItem category={category} />
                             </MenuItem>
                         ))}
                     </TextField>

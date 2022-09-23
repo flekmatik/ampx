@@ -8,6 +8,7 @@ import {TransactionDialog} from "../transaction-dialog/TransactionDialog";
 import "./Transactions.css";
 import {TransactionAmount} from "../TransactionAmount/TransactionAmount";
 import {Category} from "../../pages/main/MainPage";
+import {CategoryItem} from "../CategoryItem/CategoryItem";
 
 export interface Transaction {
     date: string;
@@ -43,6 +44,9 @@ export const Transactions = (props: TransactionsProps) => {
                         </TableCell>
                         <TableCell>
                             {item.description}
+                        </TableCell>
+                        <TableCell sx={{}}>
+                            <CategoryItem category={props.categories.find(c => c.id === item.categoryId)!} />
                         </TableCell>
                         <TableCell align="right">
                             <TransactionAmount transaction={item}/>
