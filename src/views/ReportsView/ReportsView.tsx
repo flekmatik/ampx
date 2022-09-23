@@ -1,15 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import { CashflowChart } from '../../components/CashflowChart/CashflowChart';
 import { CategoryChart } from '../../components/CategoryChart/CategoryChart';
-import { Category } from '../../pages/MainPage/MainPage';
+import { Category } from '../../interfaces';
 import { Transaction } from '../TransactionsView/TransactionsView';
-
 
 interface ReportsViewProps {
     transactions: Transaction[];
     categories: Category[];
 }
-
 
 export const ReportsView = (props: ReportsViewProps) => {
     return (
@@ -22,7 +20,7 @@ export const ReportsView = (props: ReportsViewProps) => {
                 alignItems: 'center',
             }}
         >
-            <CashflowChart transactions={props.transactions}/>
+            <CashflowChart transactions={props.transactions} />
             <Box>
                 <Typography>Income</Typography>
                 <CategoryChart

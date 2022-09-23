@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { CategoryItem } from '../../components/CategoryItem/CategoryItem';
 import { TransactionAmount } from '../../components/TransactionAmount/TransactionAmount';
 import { dayJsToDateString, TransactionDialog } from '../../dialogs/TransactionDialog/TransactionDialog';
-import { Category } from '../../pages/MainPage/MainPage';
+import { Category } from '../../interfaces';
 
 export interface Transaction {
     date: string;
@@ -45,10 +45,10 @@ export const TransactionsView = (props: TransactionsProps) => {
                             {item.description}
                         </TableCell>
                         <TableCell sx={{}}>
-                            <CategoryItem category={props.categories.find(c => c.id === item.categoryId)!}/>
+                            <CategoryItem category={props.categories.find(c => c.id === item.categoryId)!} />
                         </TableCell>
                         <TableCell align="right">
-                            <TransactionAmount transaction={item}/>
+                            <TransactionAmount transaction={item} />
                         </TableCell>
                         <TableCell width={60} align="right">
                             <IconButton
@@ -56,14 +56,14 @@ export const TransactionsView = (props: TransactionsProps) => {
                                 aria-label="edit transaction"
                                 onClick={() => setEditedTransaction(item)}
                             >
-                                <EditIcon/>
+                                <EditIcon />
                             </IconButton>
                             <IconButton
                                 edge="end"
                                 aria-label="delete transaction"
                                 onClick={() => props.onChange(props.items.filter(i => i.transactionId !== item.transactionId))}
                             >
-                                <DeleteIcon/>
+                                <DeleteIcon />
                             </IconButton>
                         </TableCell>
                     </TableRow>
@@ -86,7 +86,7 @@ export const TransactionsView = (props: TransactionsProps) => {
                     categoryId: props.categories[0].id,
                 })}
             >
-                <AddIcon/>
+                <AddIcon />
             </Fab>
             {editedTransaction && (
                 <TransactionDialog

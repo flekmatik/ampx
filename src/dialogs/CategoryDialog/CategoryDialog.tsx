@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
-import { Category } from '../../pages/MainPage/MainPage';
+import { Category } from '../../interfaces';
 
 interface TransactionDialogProps {
     initial: Category;

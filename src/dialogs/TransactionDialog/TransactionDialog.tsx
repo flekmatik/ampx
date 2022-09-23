@@ -15,7 +15,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Dayjs } from 'dayjs';
 import { useState } from 'react';
 import { CategoryItem } from '../../components/CategoryItem/CategoryItem';
-import { Category } from '../../pages/MainPage/MainPage';
+import { Category } from '../../interfaces';
 import { Transaction } from '../../views/TransactionsView/TransactionsView';
 
 interface TransactionDialogProps {
@@ -73,7 +73,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
                     >
                         {props.categories.map(category => (
                             <MenuItem key={category.id} value={category.id}>
-                                <CategoryItem category={category}/>
+                                <CategoryItem category={category} />
                             </MenuItem>
                         ))}
                     </TextField>

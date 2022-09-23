@@ -4,7 +4,7 @@ import { Box, Button, IconButton, Table, TableBody, TableCell, TableRow, Typogra
 import { useState } from 'react';
 import { CategoryItem } from '../../components/CategoryItem/CategoryItem';
 import { CategoryDialog } from '../../dialogs/CategoryDialog/CategoryDialog';
-import { Category } from '../../pages/MainPage/MainPage';
+import { Category } from '../../interfaces';
 
 interface SettingsViewProps {
     categories: Category[];
@@ -19,15 +19,13 @@ export const SettingsView = (props: SettingsViewProps) => {
             <Typography variant="h5">Categories</Typography>
             <Table><TableBody>
                 {props.categories.map((item) => (
-                    <TableRow
-                        key={item.id}
-                    >
+                    <TableRow key={item.id}>
                         <TableCell>
-                            <CategoryItem category={item}/>
+                            <CategoryItem category={item} />
                         </TableCell>
                         <TableCell align="right">
                             <IconButton aria-label="delete" size="small" onClick={() => setEditedCategory(item)}>
-                                <EditIcon/>
+                                <EditIcon />
                             </IconButton>
                             <IconButton
                                 aria-label="delete"
@@ -35,7 +33,7 @@ export const SettingsView = (props: SettingsViewProps) => {
                                 disabled={props.usedCategoryIds.includes(item.id) || props.categories.length < 2}
                                 onClick={() => props.onChange(props.categories.filter(c => c.id !== item.id))}
                             >
-                                <DeleteIcon/>
+                                <DeleteIcon />
                             </IconButton>
                         </TableCell>
                     </TableRow>

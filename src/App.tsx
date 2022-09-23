@@ -1,8 +1,9 @@
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import React, { useState } from 'react';
+import { Model } from './interfaces';
 import { LoginPage } from './pages/LoginPage/LoginPage';
-import { MainPage, Model } from './pages/MainPage/MainPage';
+import { MainPage } from './pages/MainPage/MainPage';
 
 dayjs.extend(utc);
 

@@ -1,21 +1,11 @@
-import { useState } from "react";
-import { Transaction, TransactionsView } from "../../views/TransactionsView/TransactionsView";
-import { AppBar, Box, Button, IconButton, Toolbar, Typography } from "@mui/material";
-import { Page, Sider } from "../../components/Sider/Sider";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import { SettingsView } from "../../views/SettingsView/SettingsView";
-import { ReportsView } from "../../views/ReportsView/ReportsView";
-
-export interface Category {
-    id: string;
-    title: string;
-    color: string;
-}
-
-export interface Model {
-    transactions: Transaction[];
-    categories: Category[];
-}
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Page, Sider } from '../../components/Sider/Sider';
+import { Model } from '../../interfaces';
+import { ReportsView } from '../../views/ReportsView/ReportsView';
+import { SettingsView } from '../../views/SettingsView/SettingsView';
+import { TransactionsView } from '../../views/TransactionsView/TransactionsView';
 
 interface MainPageProps {
     model: Model;
@@ -28,7 +18,7 @@ export const MainPage = (props: MainPageProps) => {
 
     const getContent = () => {
         switch (page) {
-            case "transactions":
+            case 'transactions':
                 return (
                     <TransactionsView
                         items={props.model.transactions}
@@ -39,7 +29,7 @@ export const MainPage = (props: MainPageProps) => {
                         })}
                     />
                 );
-            case "settings":
+            case 'settings':
                 return (
                     <SettingsView
                         usedCategoryIds={props.model.transactions
@@ -48,16 +38,16 @@ export const MainPage = (props: MainPageProps) => {
                         categories={props.model.categories}
                         onChange={value => props.onChange({
                             ...props.model,
-                            categories: value
+                            categories: value,
                         })}
                     />
                 );
-            case "reports":
+            case 'reports':
                 return (
-                    <ReportsView transactions={props.model.transactions} categories={props.model.categories}/>
+                    <ReportsView transactions={props.model.transactions} categories={props.model.categories} />
                 );
         }
-    }
+    };
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -70,7 +60,7 @@ export const MainPage = (props: MainPageProps) => {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <AccountBalanceWalletIcon/>
+                        <AccountBalanceWalletIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
                         Amp X Expenses tracker
@@ -89,4 +79,4 @@ export const MainPage = (props: MainPageProps) => {
             </Box>
         </Box>
     );
-}
+};

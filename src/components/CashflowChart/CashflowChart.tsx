@@ -1,5 +1,5 @@
-import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
 import dayjs from 'dayjs';
+import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
 import { Transaction } from '../../views/TransactionsView/TransactionsView';
 
 interface CashflowChartProps {
@@ -56,15 +56,15 @@ export const CashflowChart = (props: CashflowChartProps) => {
 
     return (
         <ComposedChart width={400} height={200} data={d} stackOffset="sign">
-            <Bar dataKey="expenses" stackId="a" fill="#ff0000"/>
-            <Bar dataKey="income" stackId="a" fill="#00ff00"/>
-            <Line type="monotone" dataKey="total" stroke="#0000ff" dot={false}/>
-            <Tooltip labelFormatter={formatter}/>
+            <Bar dataKey="expenses" stackId="a" fill="#ff0000" />
+            <Bar dataKey="income" stackId="a" fill="#00ff00" />
+            <Line type="monotone" dataKey="total" stroke="#0000ff" dot={false} />
+            <Tooltip labelFormatter={formatter} />
             <XAxis
                 dataKey="dayNum"
                 tickFormatter={formatter}
             />
-            <YAxis unit="€"/>
+            <YAxis unit="€" />
         </ComposedChart>
     );
 };
