@@ -13,49 +13,48 @@ type CashflowChartData = {
 const formatter = (dayNum: number) => dayjs(dayNum * 86400000).format('DD/MM');
 
 export const CashflowChart = (props: CashflowChartProps) => {
-    const dayTransactions = props.transactions.map(t => ({
-        ...t,
-        date: dayjs(t.date, 'YYYY-MM-DD').utc(true).valueOf() / 86400000,
-    }));
-    const days = dayTransactions.map(t => t.date);
-    const minDay = Math.min(...days);
-    const maxDay = Math.max(...days);
-    if (maxDay - minDay < 0) {
+    if (!props.transactions.length) {
         return null;
     }
-    const allDays = [...Array(maxDay - minDay)]
+    const transactionsWithDays = props.transactions.map(transaction => ({
+        ...transaction,
+        day: dayjs(transaction.date, 'YYYY-MM-DD').utc(true).valueOf() / 86400000,
+    }));
+    const days = transactionsWithDays.map(({ day }) => day);
+    const minDay = Math.min(...days);
+    const maxDay = Math.max(...days);
+    const emptyChartData = [...Array(maxDay - minDay)]
         .map((_, index) => minDay + index)
-        .reduce((acc, day) => ({ ...acc, [day]: {} }), {});
+        .reduce<CashflowChartData>((acc, day) => ({ ...acc, [day]: {} }), {});
 
-    const cashflowChartData = props.transactions
-        .reduce<CashflowChartData>((acc, transaction) => {
-            const { date, amount } = transaction;
+    const cashflowChartData = transactionsWithDays
+        .reduce((acc, transaction) => {
+            const { day, amount } = transaction;
             const type = amount < 0 ? 'expenses' : 'income';
-            const dayNum = dayjs(date, 'YYYY-MM-DD').utc(true).valueOf() / 86400000;
-            const current = acc[dayNum];
+            const entry = acc[day];
             return {
                 ...acc,
-                [dayNum]: {
-                    ...current,
-                    [type]: (current?.[type] || 0) + amount,
+                [day]: {
+                    ...entry,
+                    [type]: (entry[type] ?? 0) + amount,
                 },
             };
-        }, allDays);
-    let currentTotal = 0;
-    const d = Object.entries(cashflowChartData)
-        .map(([dayNum, data]: any) => ({ dayNum, ...data }))
-        .sort((a, b) => a.dayNum - b.dayNum)
+        }, emptyChartData);
+    let runningTotal = 0;
+    const data = Object.entries(cashflowChartData)
+        .map(([day, data]) => ({ day: parseInt(day, 10), ...data }))
+        .sort((a, b) => a.day - b.day)
         .map((item, index, acc) => {
             const dayTotal = (acc[index].income ?? 0) + (acc[index].expenses ?? 0);
-            currentTotal += dayTotal;
+            runningTotal += dayTotal;
             return ({
                 ...item,
-                total: currentTotal,
+                total: runningTotal,
             });
         });
 
     return (
-        <ComposedChart width={400} height={200} data={d} stackOffset="sign">
+        <ComposedChart width={400} height={200} data={data} stackOffset="sign">
             <Bar dataKey="expenses" stackId="a" fill="#ff0000" />
             <Bar dataKey="income" stackId="a" fill="#00ff00" />
             <Line type="monotone" dataKey="total" stroke="#0000ff" dot={false} />
