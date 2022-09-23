@@ -20,6 +20,9 @@ export const CashflowChart = (props: CashflowChartProps) => {
     const days = dayTransactions.map(t => t.date);
     const minDay = Math.min(...days);
     const maxDay = Math.max(...days);
+    if (maxDay - minDay < 1) {
+        return null;
+    }
     const allDays = [...Array(maxDay - minDay)]
         .map((_, index) => minDay + index)
         .reduce((acc, day) => ({...acc, [day]: {}}), {});
