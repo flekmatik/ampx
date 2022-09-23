@@ -51,7 +51,7 @@ export const TransactionsView = (props: TransactionsProps) => {
                         <TableCell align="right">
                             <TransactionAmount transaction={item}/>
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell width={60} align="right">
                             <IconButton
                                 edge="end"
                                 aria-label="edit transaction"

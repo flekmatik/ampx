@@ -22,9 +22,9 @@ interface SettingsViewProps {
 export const SettingsView = (props: SettingsViewProps) => {
     const [editedCategory, setEditedCategory] = useState<Category>();
     return (
-        <Box sx={{display: 'flex', flexDirection: 'column'}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', width: 300}}>
             <Typography variant="h5">Categories</Typography>
-            <Table style={{}}><TableBody>
+            <Table><TableBody>
                 {props.categories.map((item) => (
                     <TableRow
                         key={item.id}
@@ -32,7 +32,7 @@ export const SettingsView = (props: SettingsViewProps) => {
                         <TableCell>
                             <CategoryItem category={item}/>
                         </TableCell>
-                        <TableCell>
+                        <TableCell align="right">
                             <IconButton aria-label="delete" size="small" onClick={() => setEditedCategory(item)}>
                                 <EditIcon/>
                             </IconButton>

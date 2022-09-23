@@ -83,7 +83,7 @@ export const MainPage = (props: MainPageProps) => {
                     page={page}
                     onChange={page => setPage(page)}
                 />
-                <Box sx={{padding: '16px'}}>
+                <Box sx={{padding: '16px', flexGrow: 1}}>
                     {getContent()}
                 </Box>
             </Box>

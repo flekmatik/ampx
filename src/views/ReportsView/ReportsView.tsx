@@ -16,7 +16,15 @@ interface ReportsViewProps {
 
 export const ReportsView = (props: ReportsViewProps) => {
     return (
-        <Box sx={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                width: '100%',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+            }}
+        >
             <CashflowChart transactions={props.transactions}/>
             <Box>
                 <Typography>Income</Typography>
