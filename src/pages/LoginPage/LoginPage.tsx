@@ -10,6 +10,7 @@ export const LoginPage = (props: LoginPageProps) => {
     const [password, setPassword] = useState('');
     return (
         <form
+            aria-label="login page"
             style={{
                 display: 'flex',
                 flexDirection: 'column',

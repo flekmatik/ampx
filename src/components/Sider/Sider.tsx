@@ -31,7 +31,7 @@ const items: { key: Page, title: string, icon: JSX.Element }[] = [
 
 export const Sider = (props: SiderProps) => {
     return (
-        <div>
+        <div aria-label="main menu">
             <Box
                 sx={{ width: 250 }}
                 role="presentation"

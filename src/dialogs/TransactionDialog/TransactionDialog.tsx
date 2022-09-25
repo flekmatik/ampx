@@ -36,7 +36,7 @@ export const TransactionDialog = (props: TransactionDialogProps) => {
     return (
         <Dialog open={true} onClose={props.onCancel} fullWidth>
             <DialogTitle>Edit transaction</DialogTitle>
-            <DialogContent sx={{ display: 'flex', flexDirection: 'column' }}>
+            <DialogContent sx={{ display: 'flex', flexDirection: 'column' }} aria-label="transaction editor">
                 <Stack sx={{ marginTop: 1 }}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DesktopDatePicker

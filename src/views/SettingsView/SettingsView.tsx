@@ -15,7 +15,7 @@ interface SettingsViewProps {
 export const SettingsView = (props: SettingsViewProps) => {
     const [editedCategory, setEditedCategory] = useState<Category>();
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', width: 300 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', width: 300 }} aria-label="settings view">
             <Typography variant="h5">Categories</Typography>
             <Table><TableBody>
                 {props.categories.map((item) => (
@@ -24,11 +24,15 @@ export const SettingsView = (props: SettingsViewProps) => {
                             <CategoryItem category={item} />
                         </TableCell>
                         <TableCell align="right">
-                            <IconButton aria-label="delete" size="small" onClick={() => setEditedCategory(item)}>
+                            <IconButton
+                                aria-label="edit category"
+                                size="small"
+                                onClick={() => setEditedCategory(item)}
+                            >
                                 <EditIcon />
                             </IconButton>
                             <IconButton
-                                aria-label="delete"
+                                aria-label="delete category"
                                 size="small"
                                 disabled={props.usedCategoryIds.includes(item.id) || props.categories.length < 2}
                                 onClick={() => props.onChange(props.categories.filter(c => c.id !== item.id))}
@@ -41,7 +45,7 @@ export const SettingsView = (props: SettingsViewProps) => {
             </TableBody></Table>
             <Button
                 color="primary"
-                aria-label="add"
+                aria-label="add category"
                 className="Fab"
                 sx={{ alignSelf: 'center' }}
                 onClick={() => setEditedCategory({

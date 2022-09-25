@@ -1,8 +1,10 @@
+import { Box, Typography } from '@mui/material';
 import { Cell, Legend, Pie, PieChart, Tooltip } from 'recharts';
 import { Category } from '../../interfaces';
 import { Transaction } from '../../views/TransactionsView/TransactionsView';
 
 interface CategoryChartProps {
+    title: string;
     transactions: Transaction[];
     categories: Category[];
 }
@@ -20,26 +22,29 @@ export const CategoryChart = (props: CategoryChartProps) => {
         }))
         .filter(item => item.total);
     return (
-        <PieChart width={250} height={250}>
-            <Legend
-                formatter={value => <span style={{ color: 'black' }}>{value}</span>}
-            />
-            <Tooltip />
-            <Pie
-                data={data}
-                dataKey="total"
-                nameKey="title"
-                cx="50%"
-                cy="50%"
-                fill="#8884d8"
-            >
-                {data.map(entry => (
-                    <Cell
-                        key={entry.id}
-                        fill={entry.color}
-                    />
-                ))}
-            </Pie>
-        </PieChart>
+        <Box aria-label={`${props.title} chart`}>
+            <Typography>{props.title}</Typography>
+            <PieChart width={250} height={250}>
+                <Legend
+                    formatter={value => <span style={{ color: 'black' }}>{value}</span>}
+                />
+                <Tooltip />
+                <Pie
+                    data={data}
+                    dataKey="total"
+                    nameKey="title"
+                    cx="50%"
+                    cy="50%"
+                    fill="#8884d8"
+                >
+                    {data.map(entry => (
+                        <Cell
+                            key={entry.id}
+                            fill={entry.color}
+                        />
+                    ))}
+                </Pie>
+            </PieChart>
+        </Box>
     );
 };

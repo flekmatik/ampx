@@ -34,6 +34,7 @@ export const TransactionsView = (props: TransactionsProps) => {
                 justifyContent: 'center',
                 alignItems: 'start',
             }}
+            aria-label="transactions view"
         >
             <Table style={{ width: 700, margin: 16 }}><TableBody>
                 {props.items.sort((a, b) => a.date.localeCompare(b.date)).map((item) => (
@@ -76,7 +77,7 @@ export const TransactionsView = (props: TransactionsProps) => {
                     bottom: 16,
                     position: 'absolute',
                 }}
-                aria-label="add"
+                aria-label="add transaction"
                 className="Fab"
                 onClick={() => setEditedTransaction({
                     date: dayJsToDateString(dayjs()),
